@@ -43,6 +43,42 @@
         };
 
     /**
+     * Get nested property from object by string
+     *
+     * @param {object} obj
+     * @param {string} prop
+     * @return {string}
+     */
+
+    function getPropertyByString(obj, prop) {
+        var arr, last, i, l, current;
+
+        if (prop.indexOf('.') > -1) {
+            arr = prop.split('.');
+
+            if (Array.isArray(arr)) {
+                last = arr.pop();
+                l = arr.length;
+                i = 1;
+                current = arr[0];
+
+                while ((obj = obj[current]) && i < l) {
+                    current = arr[i];
+                    i++;
+                }
+
+                if (obj) {
+                    return obj[last];
+                }
+            } else {
+                return obj[prop];
+            }
+        } else {
+            return obj[prop];
+        }
+    }
+
+    /**
      * Embeds object
      *
      * Sets options, variables and calls init() function
@@ -326,7 +362,13 @@
                 url: url
             },
             success: function (data) {
-                var html = data && data.html;
+                var html;
+
+                if (that.options.oembedProxyKey) {
+                    html = data && (getPropertyByString(data, that.options.oembedProxyKey) || data.html);
+                } else {
+                    html = data && data.html;
+                }
 
                 if (data && !html && data.type === 'photo' && data.url) {
                     html = '<img src="' + data.url + '" alt="">';
