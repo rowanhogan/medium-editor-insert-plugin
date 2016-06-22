@@ -51,7 +51,6 @@ The first step is to include the plugin with all its dependencies to your code:
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/medium-editor/dist/js/medium-editor.js"></script>
 <script src="bower_components/handlebars/handlebars.runtime.min.js"></script>
-<script src="bower_components/jquery-sortable/source/js/jquery-sortable-min.js"></script>
 <script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>

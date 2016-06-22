@@ -53,22 +53,6 @@
                     }
                 }
             },
-            sorting: function () {
-                var that = this;
-
-                $('.medium-insert-images').sortable({
-                    group: 'medium-insert-images',
-                    containerSelector: '.medium-insert-images',
-                    itemSelector: 'figure',
-                    placeholder: '<figure class="placeholder">',
-                    handle: 'img',
-                    nested: false,
-                    vertical: false,
-                    afterMove: function () {
-                        that.core.triggerInput();
-                    }
-                });
-            },
             messages: {
                 acceptFileTypesError: 'This file is not in a supported format: ',
                 maxFileSizeError: 'This file is too big: '
@@ -127,7 +111,6 @@
 
         this.events();
         this.backwardsCompatibility();
-        this.sorting();
     };
 
     /**
@@ -350,7 +333,6 @@
         $.proxy(this, 'showImage', data.result.files[0].url, data)();
 
         this.core.clean();
-        this.sorting();
     };
 
     /**
@@ -703,16 +685,6 @@
         this.core.hideButtons();
 
         this.core.triggerInput();
-    };
-
-    /**
-     * Initialize sorting
-     *
-     * @returns {void}
-     */
-
-    Images.prototype.sorting = function () {
-        $.proxy(this.options.sorting, this)();
     };
 
     /** Plugin initialization */
