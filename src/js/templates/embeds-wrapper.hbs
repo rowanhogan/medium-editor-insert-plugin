@@ -1,7 +1,24 @@
 <div class="medium-insert-embeds" contenteditable="false">
 	<figure>
-		<div class="medium-insert-embed">
-			{{{html}}}
+		<div class="medium-insert-embed" data-type="{{html.type}}" data-src="{{html.source.url}}">
+      {{#if html.type}}
+        {{#if html.oembed.html}}
+          {{{html.oembed.html}}}
+        {{/if}}
+
+        {{#if html.title_image.url}}
+          <div class="px-spotlight-lead-image" data-width="{{html.title_image.width}}" data-height="{{html.title_image.height}}">
+            <div class="px-background-image px-image-ready" data-original-src="{{html.title_image.url}}" style="background-image: url('http://imgry.pressly.com/xx3/fetch?url={{html.title_image.url}}&size=960x585&op=cover'); background-size: cover;"></div>
+          </div>
+        {{/if}}
+
+        <figcaption>
+          <h4 class="medium-insert-embed-title" contenteditable="true">{{html.title}}</h4>
+          <p class="medium-insert-embed-description" contenteditable="true">{{{html.description}}}</p>
+        </figcaption>
+      {{else}}
+        {{{html}}}
+      {{/if}}
 		</div>
 	</figure>
 	<div class="medium-insert-embeds-overlay"></div>

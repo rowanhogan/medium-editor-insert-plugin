@@ -9,6 +9,7 @@
             label: '<span class="fa fa-youtube-play"></span>',
             placeholder: 'Paste a YouTube, Vimeo, Facebook, Twitter or Instagram link and press Enter',
             oembedProxy: 'http://medium.iframe.ly/api/oembed?iframe=1',
+            oembedProxySelf: false,
             captions: true,
             captionPlaceholder: 'Type caption (optional)',
             styles: {
@@ -364,7 +365,9 @@
             success: function (data) {
                 var html;
 
-                if (that.options.oembedProxyKey) {
+                if (that.options.oembedProxySelf) {
+                    html = data;
+                } else if (that.options.oembedProxyKey) {
                     html = data && (getPropertyByString(data, that.options.oembedProxyKey) || data.html);
                 } else {
                     html = data && data.html;
@@ -455,7 +458,7 @@
             alert('Incorrect URL format specified');
             return false;
         } else {
-            if (html.indexOf('</script>') > -1) {
+            if (typeof (html) !== 'object' && html.indexOf('</script>') > -1) {
                 // Store embed code with <script> tag inside wrapper attribute value.
                 // Make nice attribute value escaping using jQuery.
                 $div = $('<div>')
@@ -487,7 +490,7 @@
 
             this.core.triggerInput();
 
-            if (html.indexOf('facebook') !== -1) {
+            if (typeof (html) !== 'object' && html.indexOf('facebook') !== -1) {
                 if (typeof (FB) !== 'undefined') {
                     setTimeout(function () {
                         FB.XFBML.parse();
