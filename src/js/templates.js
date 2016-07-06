@@ -67,11 +67,13 @@ this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handl
   return ((stack1 = helpers["if"].call(alias1,((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.oembed : stack1)) != null ? stack1.html : stack1),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n"
     + ((stack1 = helpers["if"].call(alias1,((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.url : stack1),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n        <figcaption>\n          <h4 class=\"medium-insert-embed-title\" contenteditable=\"true\">"
+    + "\n        <figcaption contenteditable=\"false\">\n          <h4 class=\"medium-insert-embed-title\" contenteditable=\"true\">"
     + container.escapeExpression(alias2(((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title : stack1), depth0))
     + "</h4>\n          <p class=\"medium-insert-embed-description\" contenteditable=\"true\">"
     + ((stack1 = alias2(((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.description : stack1), depth0)) != null ? stack1 : "")
-    + "</p>\n        </figcaption>\n";
+    + "</p>\n\n"
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.source : stack1)) != null ? stack1.network : stack1),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </figcaption>\n";
 },"2":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -85,12 +87,28 @@ this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handl
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.width : stack1), depth0))
     + "\" data-height=\""
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.height : stack1), depth0))
+    + "\" data-src=\""
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.url : stack1), depth0))
     + "\">\n            <div class=\"px-background-image px-image-ready\" data-original-src=\""
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.url : stack1), depth0))
     + "\" style=\"background-image: url('http://imgry.pressly.com/xx3/fetch?url="
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.title_image : stack1)) != null ? stack1.url : stack1), depth0))
     + "&size=960x585&op=cover'); background-size: cover;\"></div>\n          </div>\n";
 },"6":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "            <div class=\"px-byline\" contenteditable=\"false\">\n              <span class=\"px-byline-network\" contenteditable=\"true\">"
+    + container.escapeExpression(container.lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.source : stack1)) != null ? stack1.network : stack1), depth0))
+    + "</span>\n              "
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.author : stack1)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n            </div>\n";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<span class=\"px-byline-author\" contenteditable=\"true\">"
+    + container.escapeExpression(container.lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.author : stack1)) != null ? stack1.name : stack1), depth0))
+    + "</span>";
+},"9":function(container,depth0,helpers,partials,data) {
     var stack1, helper;
 
   return "        "
@@ -104,7 +122,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handl
     + "\" data-src=\""
     + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.source : stack1)) != null ? stack1.url : stack1), depth0))
     + "\">\n"
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.type : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(6, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.html : depth0)) != null ? stack1.type : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(9, data, 0),"data":data})) != null ? stack1 : "")
     + "		</div>\n	</figure>\n	<div class=\"medium-insert-embeds-overlay\"></div>\n</div>\n";
 },"useData":true});
 

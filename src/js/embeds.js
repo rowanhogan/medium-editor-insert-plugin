@@ -137,6 +137,8 @@
      */
 
     Embeds.prototype.events = function () {
+        var that = this;
+
         $(document)
             .on('click', $.proxy(this, 'unselectEmbed'))
             .on('keydown', $.proxy(this, 'removeEmbed'))
@@ -152,6 +154,16 @@
         if (this.options.parseOnPaste) {
             this.$el
                 .on('paste', $.proxy(this, 'processPasted'));
+        }
+
+        if (this.core.getEditor()) {
+            this.core.getEditor().subscribe('expandAnchor', function (event) {
+                var data = event.data,
+                $parent = $(data.element).closest('p, div');
+
+                $parent.addClass('medium-insert-embeds-active');
+                that.oembed(data.value);
+            });
         }
     };
 
@@ -484,7 +496,11 @@
                 $place.after(this.templates['src/js/templates/embeds-wrapper.hbs']({
                     html: html
                 }));
-                $place.remove();
+
+                // Remove only if added from input
+                if ($place.hasClass('medium-insert-embeds-input')) {
+                    $place.remove();
+                }
             }
 
 

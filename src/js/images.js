@@ -501,9 +501,9 @@
                     $sibling = $current.next();
                 }
 
-                if ($sibling && $sibling.hasClass('medium-insert-images')) {
-                    images.push($sibling.find('img'));
-                }
+                // if ($sibling && $sibling.hasClass('medium-insert-images')) {
+                //     images.push($sibling.find('img'));
+                // }
 
                 // If text is selected, find images in the selection
                 selectedHtml = MediumEditor.selection.getSelectionHtml(document);
