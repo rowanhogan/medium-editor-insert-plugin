@@ -619,17 +619,19 @@
             if ($embed.length) {
                 e.preventDefault();
 
-                $('.medium-insert-embeds-toolbar, .medium-insert-embeds-toolbar2').remove();
+                if (!$embed.find(document.activeElement).length) {
+                    $('.medium-insert-embeds-toolbar, .medium-insert-embeds-toolbar2').remove();
 
-                $empty = $(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-                $embed.before($empty);
-                $embed.remove();
+                    $empty = $(this.templates['src/js/templates/core-empty-line.hbs']().trim());
+                    $embed.before($empty);
+                    $embed.remove();
 
-                // Hide addons
-                this.core.hideAddons();
+                    // Hide addons
+                    this.core.hideAddons();
 
-                this.core.moveCaret($empty);
-                this.core.triggerInput();
+                    this.core.moveCaret($empty);
+                    this.core.triggerInput();
+                }
             }
         }
     };
